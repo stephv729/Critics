@@ -1,0 +1,28 @@
+<% if current_user.present? %>
+<% available_critics = @game.available_critics(current_user.id,current_user.role) %>
+<%else%>
+<% available_critics = @game.critics.select { |c| c.approved? } %>
+<%end%>
+
+<div class="p-0-1">
+  <%= image_tag(@game.cover,:class =>"game-cover--show")%> 
+  <div class="game-content__show flex-between">
+    <div class="flex flex-column">
+      <div class="heading--sm"><%= @game.name %></div>
+      <div class="content-xs"><%= @game.release_date.year if @game.release_date %> </div> 
+    </div>
+    <div class="btn-rating white flex-center-items"><%= @game.rating%></div>
+  </div>
+  <!--<%= link_to "Game Details", "/games/#{@game.id}/details?query=s", data: { turbo_frame: "game-details" }, class:"button" %>-->
+
+    <div class="flex flex-between text-center mb-5">
+      <%= link_to "Game Details", @game, class: "selected w-full"%>
+      <%= link_to "Critics (#{available_critics.length})", game_critics_path(id: @game.id), class: "not-selected w-full" %>
+    </div>
+    <% authorization = current_user.nil? ? false : current_user.admin?   %>
+    <div> 
+    <%= render "game_details", game: @game, authorization: authorization  %>
+    </div>
+ 
+  <p class="text-center"><%=link_to "Back", games_path %></p>
+</div>

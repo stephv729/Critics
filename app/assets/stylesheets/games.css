@@ -1,0 +1,101 @@
+.container-game{
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.game-list{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.game-card {
+  display: flex;
+  width: 328px;
+  height: 160px;
+  background: #ffffff;
+}
+.game-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding: 8px;
+    width: 208px;
+}
+.critics{
+  width: 144px;
+}
+.btn-rating{
+  padding: 4px;
+  border-radius: 4px;
+  background: var(--secondary-300);
+  width: 42px;
+  height: 32px;
+}
+.game-cover{
+  max-width: 7.5rem;
+  object-fit: cover;
+  width: 120px;
+  height: 160px;
+}
+
+.game-cover--show{
+  height: 10rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  object-fit:cover;
+}
+
+.icon{
+  width: 16px;
+  height: 16px;
+}
+
+.game-new__error {
+  color: var(--error-400);
+}
+
+.game-content__show {
+  display: flex;
+  padding: 1rem;
+}
+
+.selected{
+  color: var(--gray-400);
+  border-bottom: 0.25rem solid var(--primary-500);
+}
+
+.not-selected{
+  color: var(--gray-300);
+}
+
+.game-button{
+  background-color: #8F8F8F;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  padding: 2px 8px;
+  width: min-content;
+  margin-top: 6px;
+}
+
+.game-button a{
+  margin-left: 7.2px;
+  display: flex;
+  align-items: center;
+}
+
+.game-button p{
+  color: white;
+}
+
+.game-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* .game-button a:first-of-type{
+  padding-right: 7.2px;
+  background-color: red;
+} */

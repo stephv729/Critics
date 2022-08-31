@@ -1,0 +1,31 @@
+<%=form_with url: critics_path(type: type, id: id) do |f|%>
+  <div class="input">
+    <%=f.text_field :title, placeholder: "Critic title", class: "input__content input__container mb-2"%>
+    <%=f.text_area :body, placeholder: "Critic body", class: "input__content input__container mb-2"%>
+  </div>
+  <%=f.submit "New Critic",class: "button button--primary w-full mb-4" %>
+<%end%>
+
+<!--El .reverse es para reorganizar(invertir el orden) de la lista de criticas de mas reciente al mas lejano -->
+<% critics.reverse.each do |c| %>
+      <hr class="line">
+      <div class="flex flex-column">      
+        <%=tag.p c.title, class: "content-lg bold"%>
+        <%=tag.p "by ".concat(User.find(c.user_id).username), class: "content-sm gray-300 mb-2"%>
+        <%=tag.p c.body, class:"mb-2"%>
+        <div class="flex flex-between">
+          <p class="content-sm gray-300">
+          Send <%=time_ago_in_words(c.created_at)%> ago
+          </p>
+          <div class="flex items-center gap-0_5">
+            <% if current_user.role == "admin" and !c.approved? %> 
+              <%= link_to "Approve", critics_aprove_path(critic_id:c.id) , class:"content-sm"%>
+            <% elsif current_user.role == "regular" and !c.approved? %> 
+              <p class="content-sm gray-300"> Pending approval </p>
+            <%end%>
+
+            <%= link_to image_tag("icons/delete.svg", class:"delete"), critic_path(c), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  if  c.user_id==current_user.id || current_user.role == "admin" %>
+          </div>
+        </div>
+      </div>
+    <%end%>

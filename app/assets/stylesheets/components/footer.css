@@ -1,0 +1,10 @@
+.footer {
+  padding: 1rem 0;
+}
+
+.footer__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CriticsRc</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+   <%# Al momento de hacer un Log out siempre agregar el data: { turbo_method: :delete} para la version 7 %>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="">
+        
+          <nav class="navbar">
+            <div class="">
+              <%=link_to image_tag("logo.png", :alt =>  "Critics RC"), root_path %>
+            </div>
+            <input class="menu-bar__checkbox" type="checkbox" id="check" checked>
+            <ul class="link-list flex-center-items content-sm">
+            <% if user_signed_in? %>
+            <li> Welcome <%= current_user.username %></li>
+            <li> <%= link_to "Edit Profile", edit_user_registration_path %> </li>
+            <li><%= link_to "Games", games_path %> </li>
+            <li><%= link_to "Companies", companies_path %> </li>
+            <li class="button button--secondary"><%= link_to  "Log out", destroy_user_session_path, class: "white", data: { turbo_method: :delete} %> </li>
+            <% else %>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
+            <% end %>
+            </ul>
+          </nav>
+
+        </div>
+      </header>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert%></p>
+      <%= yield %>
+      <footer class="footer">
+        <div class="footer__content content-sm">
+          <p>© 2022 - Codeable Critics</p>
+          <p>Build with ♥ by</p>
+          <div class="flex gap-0_75 wrap flex-center-items">
+            <a href="https://www.linkedin.com/in/stephanny-v-6266baa2/" class="creator" target="_blank">
+              <%= image_tag "icons/in.svg", alt: "Codeable" %>
+              <p>Stephanny Vargas</p>
+            </a>
+            <a href="https://www.linkedin.com/in/kevin-jhosep-c-589897b8/" class="creator" target="_blank">
+              <%= image_tag "icons/in.svg", alt: "Codeable" %>
+              <p>Kevin Curiñaupa</p>
+            </a>
+            <a href="https://www.linkedin.com/in/bryan-f-mendoza-guerreros-893167a4/" class="creator" target="_blank">
+              <%= image_tag "icons/in.svg", alt: "Codeable" %>
+              <p>Bryan Mendoza</p>
+            </a>
+          </div>
+          <div class="flex gap-0_75">
+            <a href="#" class="creator" target="_blank">
+              <%= image_tag "icons/in.svg", alt: "Codeable" %>
+              <p>Joshua Sosa</p>
+            </a>
+            <a href="#" class="creator" target="_blank">
+              <%= image_tag "icons/in.svg", alt: "Codeable" %>
+              <p>Flavio Huaccho</p>
+            </a>
+          </div>
+        </div>
+      </footer>
+     
+
+    </div>
+    
+  </body>
+</html>

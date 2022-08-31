@@ -1,0 +1,14 @@
+<section class="section-sm">
+  <h1 class="mb-4">Edit Company</h1>
+  <%if @company.errors.any?%>
+      <h2 class="game-new__error">Something went wrong:</h2>
+      <ul>
+        <%@company.errors.full_messages.each do |message|%>
+          <li><%=message%></li>
+        <%end%>
+      </ul>
+  <%end%>
+  <%=render "form", company: @company%>
+
+  <%=link_to "Back", companies_path, class: "button button-full-width button--subtle"%>
+</section>

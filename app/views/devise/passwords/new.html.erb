@@ -1,0 +1,20 @@
+<h2 class="center">Forgot your password?</h2>
+
+<div class="bg-white m-4">
+  <div data-turbo = "false" class="flex flex-column gap-1 p-xs">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "flex flex-column gap-1 gray-400" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <p class="content-sm">
+        Don’t worry. you can receive the instructions to reset your password <br>
+      </p>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@mail.com",class: "input__content input__container" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "SEND", class: "button button--primary w-full" %>
+      </div>
+    <% end %>
+  </div>
+</div>

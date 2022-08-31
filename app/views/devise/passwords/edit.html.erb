@@ -1,0 +1,30 @@
+<h2 class="center">Change your password</h2>
+
+<div class ="bg-white p-4">
+  <div data-turbo = "false" class="flex flex-column gap-1 p-xs">
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "flex flex-column gap-1 gray-400"}) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="field">
+    <%= f.label :password, "New password" %><br />
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "******", class: "input__content input__container" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirm new password" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "******" , class: "input__content input__container" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "CHANGE MY PASSWORD", class: "button button--primary w-full" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+
+</div>

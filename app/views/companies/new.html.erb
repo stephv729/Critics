@@ -1,0 +1,15 @@
+<div class="container p-0-1">
+  <h1 class="heading--sm mb-4">New Game</h1>
+  <% if @company.errors.any? %>
+    <h2 class="error-400 heading-xs">Something went wrong:</h2>
+    <ul>
+      <% @company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %> 
+  <%= render "form", company: @company %>
+  <div class="center">
+  <%= link_to "Back", companies_path %>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+   <div data-turbo = "false" class="flex-center-items">
+    <%= form_with(url: omniauth_authorize_path(resource_name, provider), method: :post, html: {class:"flex-center-items"}) do |f| %>
+      <%= f.submit "Sign in with #{OmniAuth::Utils.camelize(provider)}", class:"button button--secondary" %>
+    <% end %>
+    </div>
+  <% end %>
+<% end %>

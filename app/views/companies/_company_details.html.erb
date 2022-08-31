@@ -1,0 +1,38 @@
+<%= company.description %>
+<div class="flex flex-column gap-1" >
+<%="Games (#{company.games.length})"%>
+  <div class="game-list">
+      <% company.games.each do |game| %>   
+        <div class="game-card">
+          <div>
+            <%if game.cover.attached?%>
+              <%= link_to image_tag(game.cover,:class =>"game-cover"), game %>
+              <%end%>
+          </div>
+          <div class="game-content flex-between">
+            <div class="flex flex-between">
+              <div class="flex flex-column flex-between">
+                <div clas="content-lg gray-400"><%= game.name %></div>
+                <div class="gray-300 content-xs"><%= game.release_date.year if game.release_date %></div>
+              </div>
+              <div class="btn-rating white flex-center-items">
+                <div class="">
+                  <%= game.rating %>
+                </div>
+              </div>
+            </div>
+            <div class="gray-400 content-xs"><%= game.summary.first(180).concat(" ...") if game.summary %></div>
+            <div class="flex gap-0_5">
+              <div class="gray-300 critics">
+                <%=game.available_critics(@id,@role).length %> critics
+              </div>
+              <div class="flex gap-0_5">
+                <%= link_to image_tag("icons/edit.svg"), edit_game_path(game), class: "icon"%>
+                <%= link_to image_tag("icons/delete.svg"), game, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "icon" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>

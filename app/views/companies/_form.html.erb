@@ -1,0 +1,31 @@
+<%=form_with model: company, class: "flex flex-column gap-1 mb-4" do |f|%>
+      <div class="input">
+        <%=f.label :name, class: "content-xs overline"%>
+        <%=f.text_field :name, autofocus: true, placeholder: 'Company SA', class: "input__content input__container"%>   
+      </div>
+
+      <div class="input">
+        <%=f.label :description, class: "content-xs overline"%>
+        <%=f.text_area :description, placeholder: 'About the company...', class: "input__content input__container"%>
+      </div>
+
+      <div class="input">
+        <%=f.label :start_date, class: "content-xs overline"%>
+        <%=f.date_field :start_date, class: "input__content input__container"%>
+      </div>
+
+      <div class="input">
+        <%=f.label :country, class: "content-xs overline"%>
+        <%=f.text_field :country, placeholder:'0.00', class: "input__content input__container"%>
+      </div>
+      
+      <div>
+        <%=f.label :cover, class: "content-xs overline"%>
+        <%=image_tag(company.cover,:class =>"game-cover") if company.cover.attached? %>
+          <div>
+          <%=f.file_field :cover, accept: "image/png, image/jpeg"%>   
+          </div>
+      </div>
+
+      <%=f.submit class: "button button--primary"%>
+    <%end%>

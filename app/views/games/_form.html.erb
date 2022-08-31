@@ -1,0 +1,42 @@
+<%=form_with model: game, class: "flex flex-column gap-1 mb-4" do |f|%>
+      <div class="input">
+        <%=f.label :name, class: "content-xs overline"%>
+        <%=f.text_field :name, autofocus: true, placeholder: 'The Best Game', class: "input__content input__container"%>   
+      </div>
+
+      <div class="input">
+        <%=f.label :summary, class: "content-xs overline"%>
+        <%=f.text_area :summary, placeholder: 'This is the best game yet...', class: "input__content input__container"%>
+      </div>
+
+      <div class="input">
+        <%=f.label :release_date, class: "content-xs overline"%>
+        <%=f.date_field :release_date, class: "input__content input__container"%>
+      </div>
+
+      <div class="input">
+        <%=f.label :rating, class: "content-xs overline"%>
+        <%=f.number_field :rating, placeholder:'0.00', class: "input__content input__container"%>
+      </div>
+
+      <div class="select">
+        <%=f.label :category, class: "content-xs overline"%>
+        <%=f.select :category, [["Main Game", "main_game"], ["Expansion", "expansion"]], { selected: "main_game" } , class: "select__input" %>
+      </div>
+      
+      <div class="select">
+        <%=f.label :parent_id, class: "content-xs overline"%>
+        <%=f.collection_select :parent_id, Game.where(category:0),:id , :name, { include_blank: 'No parent', selected: Game.find_by(category:0) } , class: "select__input" %>
+      </div>
+      
+      
+      <div>
+        <%=f.label :cover, class: "content-xs overline"%>
+        <%=image_tag(game.cover,:class =>"game-cover") if game.cover.attached? %>
+          <div>
+          <%=f.file_field :cover, accept: "image/png, image/jpeg"%>   
+          </div>
+      </div>
+
+      <%=f.submit class: "button button--primary"%>
+    <%end%>

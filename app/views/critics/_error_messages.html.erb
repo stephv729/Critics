@@ -1,0 +1,8 @@
+<% unless errors.nil? %>
+    <h2>Unable to process your request</h2>
+    <ul>
+      <% errors.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+<% end %>

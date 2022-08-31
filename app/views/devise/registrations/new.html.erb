@@ -1,0 +1,51 @@
+<h2 class="center">Create an account</h2>
+<div class="m-4">
+  <div data-turbo = "false" class="flex flex-column gap-1 p-xs bg-white">
+    <div class="center flex flex-column gap-1 gray-400">
+      <p class="overline">CONTINUE WITH</p>
+      <div class="mt-4 mb-3">
+        <%= render "devise/shared/github" %>
+      </div>
+    </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "flex flex-column gap-1 gray-400 bg-white"}) do |f| %>
+      
+      <p class="center overline">OR</p>
+      
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :username %><br />
+        <%= f.text_field :username, autofocus: true, placeholder: "example", class: "input__content input__container" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autocomplete: "email", placeholder: "example@mail.com", class: "input__content input__container" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "******", class: "input__content input__container" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "******", class: "input__content input__container" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: "button button--primary w-full" %>
+      </div>
+    <% end %>
+
+    <p class="center">
+    Already a member?
+    </p>
+    <div class="center">
+    <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

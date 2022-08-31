@@ -1,0 +1,46 @@
+<h2 class="center">Sign in to your account</h2>
+  <%# Encerrar todo en un div con data turbo para poder ver los errores entre devise y rails 7 %>
+<div class="m-4"> 
+  
+  <div data-turbo = "false" class="flex flex-column gap-1 p-xs bg-white">
+    <div class="center flex flex-column gap-1 gray-400">
+      <p class="overline">CONTINUE WITH</p>
+      <div class="mt-4 mb-3">
+          <%= render "devise/shared/github" %>
+      </div>
+    </div>
+    <%=  form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "flex flex-column gap-1 gray-400"}) do |f| %>
+      <p class="center overline">OR</p>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@mail.com", class: "input__content input__container" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "******", class: "input__content input__container" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field content-sm">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/forgot_password", class:"content-sm" %>
+      <div class="actions">
+        <%= f.submit "Sign in", class: "button button--primary w-full" %>
+      </div>
+    <% end %>
+
+    <p class="center">
+      Don't have an account?
+    </p>
+    <div class="center">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+

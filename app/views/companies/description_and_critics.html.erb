@@ -1,0 +1,19 @@
+<%= turbo_frame_tag "company-details" do %>
+  <% options = @query=="c" ? ["not-selected","selected"] : ["selected","not-selected"] %>
+  <% available_critics = @company.available_critics(current_user.id,current_user.role)%>
+
+  <div class="flex flex-between text-center mb-2">
+    <%= link_to "Company Details", details_company_path(query:"d", id: @company.id), class: "#{options.first}  w-full"%>
+    <%= link_to "Critics (#{available_critics.length})", details_company_path(query:"c", id: @company.id), class: "#{options.second}  w-full" %>
+  </div>
+    
+  <%= render "critics/error_messages", errors: @errors %>
+  
+  <% if @query=="c"%>
+    <%= render "critics/form", type: "Company", id: @company, critics: available_critics %>
+
+  <%elsif @query=="d"%>
+    <%= render "company_details", company: @company %>
+  <%end%> 
+
+<%end%>   

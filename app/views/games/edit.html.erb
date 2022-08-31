@@ -1,0 +1,16 @@
+<section class="section-sm">
+  <h1 class="mb-4">Edit Game</h1>
+  <%if @game.errors.any?%>
+      <h2 class="game-new__error">Something went wrong:</h2>
+      <ul>
+        <%@game.errors.full_messages.each do |message|%>
+          <li><%=message%></li>
+        <%end%>
+      </ul>
+  <%end%>
+  <%=render "form", game: @game%>
+
+  <div class="center">
+    <%=link_to "Back", games_path%>
+  </div>
+</section>

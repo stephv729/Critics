@@ -1,0 +1,30 @@
+<p class ="heading--xs gray-400"> Add relations</p>
+<%=form_with url: update_data_path(game_id:game.id) do |f|%>
+  <div class= "flex gap-0_5">
+    <div class="input">
+      <%=f.collection_select :genre, Genre.all - game.genres, :id, :name,{prompt: "Select Genre"}, class: "input__content input__container mb-2"%>
+    </div>
+    <%=f.submit "ADD GENRE",class: "button button--primary  mb-4" %>
+  </div>
+
+  <div class= "flex gap-0_5">
+    <div class="input">
+      <%=f.collection_select :platform, Platform.all - game.platforms, :id, :name,{prompt: "Select Platform"}, class: "input__content input__container mb-2"%>
+    </div>
+    <%=f.submit "ADD PLATFORM ",class: "button button--primary  mb-4" %>
+  </div>
+
+  <div class= "flex gap-0_5">
+    <div class="input">
+      <%=f.collection_select :developer, Company.all - game.developers.map(&:company), :id, :name,{prompt: "Select Developer"}, class: "input__content input__container mb-2"%>
+    </div>
+    <%=f.submit "ADD DEVELOPER ",class: "button button--primary  mb-4" %>
+  </div>
+
+  <div class= "flex gap-0_5">
+    <div class="input">
+      <%=f.collection_select :publisher, Company.all - game.publishers.map(&:company), :id, :name,{prompt: "Select Publisher"}, class: "input__content input__container mb-2"%>
+    </div>
+    <%=f.submit "ADD PUBLISHER ",class: "button button--primary  mb-4" %>
+  </div>
+<%end%>

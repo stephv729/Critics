@@ -1,0 +1,56 @@
+<%= game.summary %>
+<div class="flex flex-column gap-1">
+  <div class="flex flex-column">
+    <div>
+      <%= "Genres" unless game.genres.empty? %>
+    </div>
+    <div class="game-wrap">
+      <% game.genres.each do |g| %>
+        <div class="game-button">
+          <%= tag.p g.name %>
+          <%= link_to image_tag("icons/delete-icon.svg"), delete_data_path(id:game.id,genre_id:g.id) if authorization %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div>
+      <%= "Platforms" unless game.platforms.empty? %>
+    </div>
+    <div class="game-wrap">
+      <% game.platforms.each do |p| %>
+        <div class="game-button">
+          <%= tag.p p.name %>
+          <%= link_to image_tag("icons/delete-icon.svg"), delete_data_path(id:game.id,platform_id:p.id) if authorization %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div>
+      <%= "Developers" unless game.developers.empty? %>
+    </div>
+    <div class="game-wrap">
+      <% game.developers.each do |ic| %>
+        <div class="game-button">
+          <%= tag.p ic.company.name%>
+          <%= link_to image_tag("icons/delete-icon.svg"), delete_data_path(id:game.id,d_id:ic.id) if authorization %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="flex flex-column">
+    <%= "Publishers" unless game.publishers.empty? %>
+    <div class="game-wrap">
+      <% game.publishers.each do |ic| %>
+        <div class="game-button">
+          <%= tag.p ic.company.name%>
+          <%= link_to image_tag("icons/delete-icon.svg"), delete_data_path(id:game.id,p_id:ic.id) if authorization %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+
+  <%= render "games/game_relations_form", game: game if authorization %>
+</div>

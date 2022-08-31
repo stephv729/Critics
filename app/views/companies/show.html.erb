@@ -1,0 +1,23 @@
+<% available_critics = @company.available_critics(current_user.id,current_user.role)%>
+
+<div class="p-0-1 flex flex-column gap-1">
+  <%= image_tag(@company.cover,:class =>"game-cover--show")%> 
+  <div class="flex-between">
+    <div class="flex flex-column">
+      <div class="heading--sm"><%= @company.name %></div>
+      <div class="content-xs">
+      <%= @company.start_date.year if @company.start_date %> -
+      <%= @company.country if @company.country %> 
+      </div>
+    </div>
+  </div>
+  
+  <%= turbo_frame_tag "company-details" do %>
+    <div class="flex flex-between text-center mb-5">
+      <%= link_to "Company Details", details_company_path(query:"d", id: @company.id) , class: "selected w-full"%>
+      <%= link_to "Critics (#{available_critics.length})", details_company_path(query:"c", id: @company.id), class: "not-selected w-full" %>
+    </div>
+    <%= render "company_details", company: @company %>
+  <%end%> 
+  <p class="text-center"><%=link_to "Back", companies_path %></p>
+</div>

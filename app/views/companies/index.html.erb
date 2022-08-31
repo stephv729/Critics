@@ -1,0 +1,38 @@
+<section class="">
+  <div class="container-game">
+    <h1 class="heading--sm">Companies</h1>
+    <%= link_to 'New Company', new_company_path, class: "button button--primary fit-content" if current_user.admin? %>
+
+    <div class="game-list">
+      <% @companies.each do |company| %> 
+        <div class="game-card">
+          <div>
+            <%if company.cover.attached?%>
+              <%= link_to image_tag(company.cover,:class =>"game-cover"), company_path(company.id) %>
+              <%end%>
+          </div>
+          <div class="game-content flex-between">
+            <div class="flex flex-between">
+              <div class="flex flex-column flex-between">
+                <div clas="content-lg gray-400"><%= company.name %></div>
+                <div class="gray-300 content-xs"><%= company.start_date.year if company.start_date %></div>
+                <div class="gray-300 content-xs"><%= company.country if company.country %></div>
+              </div>
+            </div>
+            <div class="gray-400 content-xs"><%= company.description.first(100).concat(" ...") if company.description %></div>
+            <div class="flex gap-0_5">
+              <div class="gray-300 critics">
+                <%=company.games.length %> Games
+              </div>
+              <div class="flex gap-0_5">
+              
+                <%= link_to image_tag("icons/edit.svg"), edit_company_path(company), class: "icon"%>
+                <%= link_to image_tag("icons/delete.svg"), company, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "icon" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
